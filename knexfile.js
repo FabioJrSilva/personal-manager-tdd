@@ -1,15 +1,14 @@
 module.exports = {
-  test: {
+  development: {
     client: 'pg',
-    version: '10',
     connection: {
       host: 'localhost',
-      user: 'postgres',
-      password: 'root',
       database: 'personal_manager',
+      user: 'postgres',
+      password: 'docker'
     },
     migrations: {
-      directory: 'src/migrations',
-    },
-  },
+      directory: 'src/database/migrations'
+    }
+  }
 };
