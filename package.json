@@ -2,7 +2,7 @@
   "name": "personal-manager",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "start": "nodemon src/server.js",
     "test": "jest --detectOpenHandles",
@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@types/jest": "^24.9.1",
-    "consign": "^0.1.6",
     "express": "^4.17.1",
     "knex": "^0.20.10",
     "knex-logger": "^0.1.0",
