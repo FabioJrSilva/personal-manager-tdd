@@ -2,7 +2,7 @@ const UserRepository = require('../repositories/UserRepository');
 
 class UserController {
   async index(req, res) {
-    await UserRepository.findAll().then((response) => {
+    await UserRepository.all().then((response) => {
       res.status(200).json(response);
     }).catch((err) => {
       res.status(401).json(err);

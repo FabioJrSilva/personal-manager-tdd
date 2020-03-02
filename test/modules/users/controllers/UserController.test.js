@@ -65,7 +65,8 @@ describe('User', () => {
       });
   });
 
-  afterAll(async () => {
+  afterAll(async (done) => {
     await DB.migrate.rollback();
+    done();
   });
 });

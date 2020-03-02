@@ -13,6 +13,7 @@ routes.get('/', (req, res) => {
 routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);
 
+routes.get('/accounts', AccountController.index);
 routes.post('/accounts', AccountController.store);
 
 module.exports = routes;

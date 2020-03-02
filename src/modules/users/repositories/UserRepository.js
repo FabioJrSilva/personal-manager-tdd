@@ -5,7 +5,7 @@ class UserRepository {
     this.db = DB;
   }
 
-  async findAll(filter = {}) {
+  async all(filter = {}) {
     return this.db('users').where(filter).select();
   }
 
@@ -14,7 +14,7 @@ class UserRepository {
     if (!user.email) throw new Error({ error: 'Email é obrigatório!' });
     if (!user.password) throw new Error({ error: 'Senha é obrigatório!' });
 
-    const userDb = await this.findAll({ email: user.email });
+    const userDb = await this.all({ email: user.email });
     if (userDb && userDb.length) throw new Error({ error: 'Email já existe!' });
 
     return this.db('users').insert(user, '*');

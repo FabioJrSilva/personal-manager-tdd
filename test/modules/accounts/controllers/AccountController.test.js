@@ -3,6 +3,7 @@ const request = require('supertest');
 const app = require('../../../../src/app');
 const DB = require('../../../../src/database/index');
 const UserRepository = require('../../../../src/modules/users/repositories/UserRepository');
+const AccountRepository = require('../../../../src/modules/accounts/repositories/AccountRepository');
 
 
 describe('Accounts', () => {
@@ -29,7 +30,19 @@ describe('Accounts', () => {
       });
   });
 
-  afterAll(async () => {
+  test('should return one accounts', async () => {
+    const account = await AccountRepository.create({ name: 'Acc #2', user_id: user.id });
+    expect(account[0].name).toEqual('Acc #2');
+
+    return request(app).get('/accounts')
+      .then((result) => {
+        expect(result.status).toBe(200);
+        expect(result.body.length).toBeGreaterThanOrEqual(1);
+      });
+  });
+
+  afterAll(async (done) => {
     await DB.migrate.rollback();
+    done();
   });
 });

@@ -5,7 +5,7 @@ class AccountRepository {
     this.db = DB;
   }
 
-  async findAll(filter = {}) {
+  async all(filter = {}) {
     return this.db('accounts').where(filter).select();
   }
 
@@ -13,7 +13,7 @@ class AccountRepository {
     if (!account.name) throw new Error({ error: 'Nome é obrigatório!' });
     if (!account.user_id) throw new Error({ error: 'user_id é obrigatório!' });
 
-    const accountDb = await this.findAll({ name: account.name });
+    const accountDb = await this.all({ name: account.name });
     if (accountDb && accountDb.length) throw new Error({ error: 'Conta já existe!' });
 
     return this.db('accounts').insert(account, '*');
