@@ -14,6 +14,7 @@ routes.get('/users', UserController.index);
 routes.post('/users', UserController.store);
 
 routes.get('/accounts', AccountController.index);
+routes.get('/accounts/:id', AccountController.show);
 routes.post('/accounts', AccountController.store);
 
 module.exports = routes;

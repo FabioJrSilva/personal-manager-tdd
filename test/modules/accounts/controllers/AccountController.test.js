@@ -32,13 +32,21 @@ describe('Accounts', () => {
 
   test('should return one accounts', async () => {
     const account = await AccountRepository.create({ name: 'Acc #2', user_id: user.id });
-    expect(account[0].name).toEqual('Acc #2');
+    expect(account.name).toEqual('Acc #2');
 
     return request(app).get('/accounts')
       .then((result) => {
         expect(result.status).toBe(200);
         expect(result.body.length).toBeGreaterThanOrEqual(1);
       });
+  });
+
+  test('sould return accounts by id', async () => {
+    const account = await AccountRepository.create({ name: 'Acc #3', user_id: user.id });
+    const result = await request(app).get(`/accounts/${account.id}`);
+    console.log(result.body);
+    expect(result.status).toBe(200);
+    expect(result.body.name).toBe(account.name);
   });
 
   afterAll(async (done) => {
