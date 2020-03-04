@@ -5,7 +5,6 @@ const DB = require('../../../../src/database/index');
 const UserRepository = require('../../../../src/modules/users/repositories/UserRepository');
 const AccountRepository = require('../../../../src/modules/accounts/repositories/AccountRepository');
 
-
 describe('Accounts', () => {
   let user;
 
@@ -23,7 +22,7 @@ describe('Accounts', () => {
 
   test('should be create a new account', () => {
     return request(app).post('/accounts')
-      .send({ name: 'Acc #1', user_id: user.id })
+      .send({ name: 'Acc #1', user_id: 1 })
       .then((res) => {
         expect(res.status).toBe(201);
         expect(res.body.name).toEqual('Acc #1');

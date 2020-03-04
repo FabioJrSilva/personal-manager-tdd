@@ -1,10 +1,8 @@
-const Validate = require('../../../class/Validate');
+const BaseModel = require('../../../class/BaseModel');
 
-class Account extends Validate {
-  constructor(name, user_id) {
-    super();
-    this.required(['name', 'user_id'], { name, user_id });
-    Object.assign(this, { name, user_id });
+class Account extends BaseModel {
+  constructor(data) {
+    super(data, ['name', 'user_id']);
   }
 }
 

@@ -13,8 +13,7 @@ class AccountController {
 
   async store(req, res) {
     try {
-      const { name, user_id } = req.body;
-      const account = new Account(name, user_id);
+      const account = new Account(req.body);
       const result = await AccountRepository.create(account);
       res.status(201).json(result);
     } catch (err) {

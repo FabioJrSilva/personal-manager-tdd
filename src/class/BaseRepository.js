@@ -2,8 +2,8 @@ const DB = require('../database');
 
 class BaseRepository {
   constructor(table) {
-    this.table = table;
     this.db = DB;
+    this.table = table;
   }
 
   /**
