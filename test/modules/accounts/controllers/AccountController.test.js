@@ -44,7 +44,6 @@ describe('Accounts', () => {
   test('sould return accounts by id', async () => {
     const account = await AccountRepository.create({ name: 'Acc #3', user_id: user.id });
     const result = await request(app).get(`/accounts/${account.id}`);
-    console.log(result.body);
     expect(result.status).toBe(200);
     expect(result.body.name).toBe(account.name);
   });

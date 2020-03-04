@@ -1,4 +1,5 @@
 const AccountRepository = require('../repositories/AccountRepository');
+const Account = require('../models/Account');
 
 class AccountController {
   async index(req, res) {
@@ -11,12 +12,14 @@ class AccountController {
   }
 
   async store(req, res) {
-    await AccountRepository.create(req.body)
-      .then((result) => {
-        res.status(201).json(result);
-      }).catch((err) => {
-        res.status(422).json(err);
-      });
+    try {
+      const { name, user_id } = req.body;
+      const account = new Account(name, user_id);
+      const result = await AccountRepository.create(account);
+      res.status(201).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   }
 
   async show(req, res) {
