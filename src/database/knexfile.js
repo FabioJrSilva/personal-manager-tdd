@@ -8,7 +8,7 @@ module.exports = {
       password: 'docker'
     },
     migrations: {
-      directory: 'src/database/migrations'
+      directory: './migrations'
     }
   }
 };
