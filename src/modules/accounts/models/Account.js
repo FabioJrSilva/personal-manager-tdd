@@ -1,4 +1,4 @@
-const BaseModel = require('../../../class/BaseModel');
+const BaseModel = require('../../../core/BaseModel');
 
 class Account extends BaseModel {
   constructor(data) {

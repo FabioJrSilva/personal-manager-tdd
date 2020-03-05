@@ -1,20 +1,20 @@
 const { Router } = require('express');
-const UserController = require('./modules/users/controllers/UserController');
-const AccountController = require('./modules/accounts/controllers/AccountController');
+const AccountHttpRequest = require('./http/AccountHttpRequest');
+const UserHttpRequest = require('./http/UserHttpRequest');
 
-const routes = Router();
+const route = Router();
 
-routes.get('/', (req, res) => {
+route.get('/', (req, res) => {
   res.status(200).json({
     message: 'curso TDD'
   });
 });
 
-routes.get('/users', UserController.index);
-routes.post('/users', UserController.store);
+route.get('/users', UserHttpRequest.index);
+route.post('/users', UserHttpRequest.store);
 
-routes.get('/accounts', AccountController.index);
-routes.get('/accounts/:id', AccountController.show);
-routes.post('/accounts', AccountController.store);
+route.get('/accounts', AccountHttpRequest.index);
+route.get('/accounts/:id', AccountHttpRequest.show);
+route.post('/accounts', AccountHttpRequest.store);
 
-module.exports = routes;
+module.exports = route;

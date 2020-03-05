@@ -17,7 +17,7 @@ describe('Accounts', () => {
       password: '010203'
     });
 
-    user = { ...result[0] };
+    user = { ...result };
   });
 
   test('should be create a new account', () => {

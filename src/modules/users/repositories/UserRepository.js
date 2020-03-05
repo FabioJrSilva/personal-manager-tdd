@@ -1,23 +1,8 @@
-const DB = require('../../../database/index');
+const BaseRepository = require('../../../core/BaseRepository');
 
-class UserRepository {
+class UserRepository extends BaseRepository {
   constructor() {
-    this.db = DB;
-  }
-
-  async all(filter = {}) {
-    return this.db('users').where(filter).select();
-  }
-
-  async create(user) {
-    if (!user.name) throw new Error({ error: 'Nome é obrigatório!' });
-    if (!user.email) throw new Error({ error: 'Email é obrigatório!' });
-    if (!user.password) throw new Error({ error: 'Senha é obrigatório!' });
-
-    const userDb = await this.all({ email: user.email });
-    if (userDb && userDb.length) throw new Error({ error: 'Email já existe!' });
-
-    return this.db('users').insert(user, '*');
+    super('users');
   }
 }
 

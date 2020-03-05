@@ -1,4 +1,4 @@
-const BaseRepository = require('../../../class/BaseRepository');
+const BaseRepository = require('../../../core/BaseRepository');
 
 class AccountRepository extends BaseRepository {
   constructor() {

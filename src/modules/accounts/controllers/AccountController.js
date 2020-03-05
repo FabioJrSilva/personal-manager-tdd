@@ -2,19 +2,23 @@ const AccountRepository = require('../repositories/AccountRepository');
 const Account = require('../models/Account');
 
 class AccountController {
+  constructor(repository) {
+    this.repository = repository;
+  }
+
   async index(req, res) {
-    await AccountRepository.all()
-      .then((result) => {
-        res.status(200).json(result);
-      }).catch((err) => {
-        res.status(400).json(err);
-      });
+    try {
+      const result = await this.repository.all();
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   }
 
   async store(req, res) {
     try {
       const account = new Account(req.body);
-      const result = await AccountRepository.create(account);
+      const result = await this.repository.create(account);
       res.status(201).json(result);
     } catch (err) {
       res.status(400).json({ error: err.message });
@@ -22,13 +26,13 @@ class AccountController {
   }
 
   async show(req, res) {
-    await AccountRepository.findById(req.params.id)
-      .then((result) => {
-        res.status(200).json(result);
-      }).catch((err) => {
-        res.status(404).json(err);
-      });
+    try {
+      const result = await this.repository.findById(req.params.id);
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(404).json({ error: err.message });
+    }
   }
 }
 
-module.exports = new AccountController();
+module.exports = new AccountController(AccountRepository);

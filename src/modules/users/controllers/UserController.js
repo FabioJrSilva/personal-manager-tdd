@@ -1,22 +1,29 @@
 const UserRepository = require('../repositories/UserRepository');
+const User = require('../model/User');
 
 class UserController {
+  constructor(repository) {
+    this.repository = repository;
+  }
+
   async index(req, res) {
-    await UserRepository.all().then((response) => {
-      res.status(200).json(response);
-    }).catch((err) => {
-      res.status(401).json(err);
-    });
+    try {
+      const result = await this.repository.all();
+      res.status(200).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.messsage });
+    }
   }
 
   async store(req, res) {
-    await UserRepository.create(req.body)
-      .then((response) => {
-        res.status(201).json(response[0]);
-      }).catch((err) => {
-        res.status(422).json(err);
-      });
+    try {
+      const user = new User(req.body);
+      const result = await this.repository.create(user);
+      res.status(201).json(result);
+    } catch (err) {
+      res.status(400).json({ error: err.message });
+    }
   }
 }
 
-module.exports = new UserController();
+module.exports = new UserController(UserRepository);
