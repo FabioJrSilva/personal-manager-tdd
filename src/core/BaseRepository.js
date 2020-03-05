@@ -20,7 +20,7 @@ class BaseRepository {
    * @param {{ key: value }} filter
    * @default {}
    */
-  async find(filter = {}) {
+  async find(filter) {
     return this.db(this.table).where(filter).select();
   }
 

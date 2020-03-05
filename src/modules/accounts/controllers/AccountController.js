@@ -1,4 +1,3 @@
-const AccountRepository = require('../repositories/AccountRepository');
 const Account = require('../models/Account');
 
 class AccountController {
@@ -35,4 +34,4 @@ class AccountController {
   }
 }
 
-module.exports = new AccountController(AccountRepository);
+module.exports = AccountController;

@@ -1,4 +1,3 @@
-const UserRepository = require('../repositories/UserRepository');
 const User = require('../model/User');
 
 class UserController {
@@ -26,4 +25,4 @@ class UserController {
   }
 }
 
-module.exports = new UserController(UserRepository);
+module.exports = UserController;
