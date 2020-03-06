@@ -11,8 +11,8 @@ class BaseRepository {
    * @param {{ key: value }} filter
    * @default {}
    */
-  async all(filter = {}) {
-    return this.db(this.table).where(filter).select();
+  async all() {
+    return this.db(this.table).where({}).select();
   }
 
   /**

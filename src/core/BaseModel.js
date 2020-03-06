@@ -25,11 +25,16 @@ class BaseModel {
    * @param {[string]} properties
    */
   required(data, properties) {
+    const errors = [];
     properties.forEach((param) => {
       if (!data[param] || data[param] === null) {
-        throw new Error(`${param} is required!`);
+        errors.push(`${param} is required!`);
       }
     });
+
+    if (errors.length) {
+      throw new Error(errors);
+    }
   }
 }
 
