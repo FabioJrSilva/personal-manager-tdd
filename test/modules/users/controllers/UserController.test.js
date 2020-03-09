@@ -50,6 +50,16 @@ describe('User', () => {
     expect(res.body.error).toBe('email already exists');
   });
 
+  test('should return user by id', async () => {
+    const user = await request(app).post('/users')
+      .send({ name: 'Fabio', email: 'fabio1@exemplo.com', password: '010203' });
+    expect(user.status).toBe(201);
+    const res = await request(app).get(`/users/${user.body.id}`).send();
+
+    expect(res.status).toBe(200);
+    expect(res.body.id).toBe(user.body.id);
+  });
+
   afterAll(async (done) => {
     await DB.migrate.rollback();
     done();
