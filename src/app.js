@@ -3,6 +3,8 @@ const knexLogger = require('knex-logger');
 
 const DB = require('./database/index');
 const routes = require('./routes');
+const UserRoutes = require('./modules/users/routes');
+const AccountsRoutes = require('./modules/accounts/routes');
 
 class App {
   constructor() {
@@ -18,6 +20,8 @@ class App {
 
   routes() {
     this.server.use(routes);
+    this.server.use(UserRoutes);
+    this.server.use(AccountsRoutes);
   }
 }
 
