@@ -19,9 +19,11 @@ class App {
   }
 
   routes() {
-    this.server.use(routes);
-    this.server.use(UserRoutes);
-    this.server.use(AccountsRoutes);
+    this.server.use([
+      routes,
+      UserRoutes,
+      AccountsRoutes
+    ]);
   }
 }
 
